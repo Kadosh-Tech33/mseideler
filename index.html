@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fábio Antunes — Tatuador | Realismo &amp; Fechamentos</title>
+<meta name="description" content="Fábio Antunes, tatuador profissional há mais de 20 anos. Especialista em realismo, fine line e fechamentos. Faça seu orçamento." />
+
+<!-- ================= AJUSTAR NO CLAUDE CODE =================
+  WHATSAPP: 5541992702189  (DDD 41 = Curitiba/PR — confirmar)
+  ENDEREÇO: Rua Duílio Calderari, 926 — CIDADE A CONFIRMAR (assumido Curitiba/PR)
+============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void:   '#050505',
+          ink:    '#0A0A0A',
+          panel:  '#121212',
+          surface:'#161616',
+          line:   '#262626',
+          linelt: '#3A3A3A',
+          fog:    '#8A8A8A',
+          mute:   '#A8A8A8',
+          bone:   '#E5E5E5',
+          paper:  '#FFFFFF',
+        },
+        fontFamily: {
+          display: ['"Bodoni Moda"', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { background: #0A0A0A; }
+  .grain::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.045; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hairline{ border-color:#262626; }
+  [data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  [data-reveal].in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{ opacity:1 !important; transform:none !important; transition:none; }
+  }
+  .filter-btn[aria-pressed="true"]{ color:#0A0A0A; background:#E5E5E5; border-color:#E5E5E5; }
+  .photo{ filter:grayscale(1) contrast(1.08) brightness(.92); transition:filter .6s ease, transform .6s ease; }
+  .group:hover .photo{ filter:grayscale(0) contrast(1.05) brightness(.95); transform:scale(1.06); }
+  .editorial-num{ font-variant-numeric: lining-nums; }
+  #top, #sobre, #trabalhos, #processo, #orcamento, #local{ scroll-margin-top: 5rem; }
+  #mobile-menu{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  #mobile-menu.open{ max-height:24rem; }
+</style>
+</head>
+
+<body class="grain font-sans text-bone antialiased selection:bg-paper selection:text-ink">
+
+<!-- ============ NAV ============ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-40 transition-colors duration-300">
+  <div class="mx-auto max-w-6xl px-5 h-20 flex items-center justify-between gap-3">
+    <a href="#top" class="leading-none shrink-0">
+      <span class="block font-display font-bold text-lg tracking-tight text-paper">FÁBIO ANTUNES</span>
+      
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-xs tracking-[.15em] uppercase text-mute">
+      <a href="#sobre" class="hover:text-paper transition">Sobre</a>
+      <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
+      <a href="#processo" class="hover:text-paper transition">Como funciona</a>
+      <a href="#local" class="hover:text-paper transition">Estúdio</a>
+    </nav>
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="#orcamento" class="inline-flex items-center gap-2 rounded-full border border-linelt px-4 py-2 text-xs md:px-5 md:py-2.5 tracking-[.1em] uppercase text-bone hover:border-paper hover:text-paper transition whitespace-nowrap">
+        <span class="md:hidden">Orçamento</span>
+        <span class="hidden md:inline">Solicitar orçamento</span>
+      </a>
+      <button id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-linelt text-bone hover:border-paper hover:text-paper transition">
+        <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-ink/95 backdrop-blur border-b hairline">
+    <nav class="mx-auto max-w-6xl px-5 py-4 flex flex-col gap-4 text-sm tracking-[.1em] uppercase text-mute">
+      <a href="#sobre" class="hover:text-paper transition">Sobre</a>
+      <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
+      <a href="#processo" class="hover:text-paper transition">Como funciona</a>
+      <a href="#local" class="hover:text-paper transition">Estúdio</a>
+      <a href="#orcamento" class="hover:text-paper transition">Fazer orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative min-h-[100svh] flex items-end overflow-hidden bg-ink">
+  <div class="absolute inset-0">
+    <img src="img/foto(9).jpg" alt="" aria-hidden="true" class="w-full h-full object-cover object-[center_20%] grayscale contrast-110 opacity-45" />
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/60"></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-5 pb-16 md:pb-24 w-full">
+    <p data-reveal class="text-mute tracking-[.4em] text-xs mb-5 uppercase">Realismo · Fine Line · Fechamentos</p>
+    <h1 data-reveal class="font-display font-bold leading-[.92] text-[15vw] md:text-[9rem] text-paper">
+      Fábio<br>Antunes
+    </h1>
+    <p data-reveal class="mt-6 max-w-xl text-mute text-lg leading-relaxed">
+      Mais de 20 anos transformando ideias em projetos exclusivos — com precisão técnica,
+      biossegurança rigorosa e acabamento de alto nível.
+    </p>
+    <div data-reveal class="mt-9 flex flex-wrap gap-4">
+      <a href="#orcamento" class="rounded-full bg-paper px-7 py-3.5 text-sm tracking-wide uppercase font-medium text-ink hover:bg-bone transition">
+        Solicitar orçamento
+      </a>
+      <a href="#trabalhos" class="rounded-full border border-linelt px-7 py-3.5 text-sm tracking-wide uppercase font-medium text-bone hover:border-paper hover:text-paper transition">
+        Ver trabalhos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre" class="relative z-10 bg-panel border-t hairline">
+  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-5">
+      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Sobre</p>
+      <h2 data-reveal class="font-display text-4xl md:text-5xl leading-tight text-paper">
+        Cada tatuagem exige atenção total, do desenho à última linha.
+      </h2>
+      <div class="mt-8 mb-8 md:mt-10 md:mb-0 aspect-[4/5] rounded-lg border hairline overflow-hidden">
+        <img src="img/foto%20(1).png" alt="Retrato de Fábio Antunes, tatuador" class="w-full h-full object-cover grayscale contrast-110" />
+      </div>
+    </div>
+
+    <div class="md:col-span-7 md:pt-10">
+      <div data-reveal class="space-y-5 text-mute leading-relaxed text-[1.05rem]">
+        <p>
+          Sou Fábio Antunes, tatuador profissional com mais de 20 anos de experiência.
+          Minha atuação é pautada pela ética, responsabilidade técnica e pelo respeito absoluto
+          à pele do cliente — sempre seguindo rigorosos padrões de biossegurança, com materiais
+          de alta qualidade e técnicas consolidadas ao longo da trajetória.
+        </p>
+        <p>
+          Sou especializado em diferentes estilos, com foco em <span class="text-bone">realismo</span> e
+          <span class="text-bone">fine line</span>, onde aplico precisão técnica, controle de profundidade e
+          alto nível de acabamento. Tenho amplo comprometimento com projetos de
+          <span class="text-bone">fechamento</span> de alto nível, desenvolvidos de forma estratégica e
+          personalizada, respeitando a anatomia do cliente em busca de um resultado estético superior.
+        </p>
+        <p>
+          Atendo com o mesmo padrão de excelência tanto projetos pequenos quanto trabalhos de grande
+          escala. Valorizo o atendimento individualizado e o diálogo transparente: busco compreender
+          expectativas, referências e objetivos de cada cliente, transformando ideias em projetos
+          exclusivos, tecnicamente seguros e esteticamente consistentes.
+        </p>
+      </div>
+
+      <!-- stats -->
+      <div class="mt-12 grid grid-cols-3 gap-6 border-t hairline pt-8">
+        <div>
+          <div class="font-display font-bold text-4xl text-paper editorial-num">20+</div>
+          <div class="text-sm text-fog mt-1">anos de atuação</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-4xl text-paper editorial-num">2005</div>
+          <div class="text-sm text-fog mt-1">profissional desde</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-4xl text-paper editorial-num">100%</div>
+          <div class="text-sm text-fog mt-1">projetos autorais</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRABALHOS (PORTFÓLIO FILTRÁVEL) ============ -->
+<section id="trabalhos" class="relative z-10 bg-ink border-t hairline">
+  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Portfólio</p>
+        <h2 class="font-display text-4xl md:text-5xl text-paper">Trabalhos por estilo</h2>
+      </div>
+      <p class="text-mute max-w-sm">Filtre pelo estilo que você procura. Toque na imagem para ampliar.</p>
+    </div>
+
+    <!-- filtros -->
+    <div class="flex flex-wrap gap-3 mb-10" role="group" aria-label="Filtrar por estilo">
+      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="all" aria-pressed="true">Todos</button>
+      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="realismo" aria-pressed="false">Realismo</button>
+      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="fechamento" aria-pressed="false">Fechamentos</button>
+      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="fineline" aria-pressed="false">Fine Line</button>
+    </div>
+
+    <div id="grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — peito, iconografia sacra" data-img="img/foto%20(2).png">
+        <img src="img/foto%20(2).png" alt="Tatuagem realismo no peito" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
+      </button>
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — braço, retrato" data-img="img/foto%20(3).png">
+        <img src="img/foto%20(3).png" alt="Tatuagem realismo no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
+      </button>
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — braço, retrato sacro" data-img="img/foto%20(4).png">
+        <img src="img/foto%20(4).png" alt="Tatuagem realismo religioso no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
+      </button>
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — perna" data-img="img/foto%20(5).png">
+        <img src="img/foto%20(5).png" alt="Tatuagem de fechamento na perna" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
+      </button>
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — braço" data-img="img/foto%20(6).png">
+        <img src="img/foto%20(6).png" alt="Tatuagem de fechamento no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
+      </button>
+      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — braço, religioso" data-img="img/foto%20(7).png">
+        <img src="img/foto%20(7).png" alt="Tatuagem de fechamento religioso no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
+        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
+      </button>
+     
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESSO ============ -->
+<section id="processo" class="relative z-10 bg-panel border-t hairline">
+  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32">
+    <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Como funciona</p>
+    <h2 class="font-display text-4xl md:text-5xl text-paper mb-14 max-w-2xl">Do primeiro contato à tatuagem pronta</h2>
+
+    <ol class="grid md:grid-cols-3 gap-8">
+      <li class="border-t-2 border-paper pt-6">
+        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">01</div>
+        <h3 class="font-display text-2xl text-bone mb-2">Orçamento</h3>
+        <p class="text-mute leading-relaxed">Você envia estilo, local do corpo, tamanho e referências pelo formulário. Eu respondo com valor e disponibilidade.</p>
+      </li>
+      <li class="border-t-2 border-line pt-6">
+        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">02</div>
+        <h3 class="font-display text-2xl text-bone mb-2">Projeto</h3>
+        <p class="text-mute leading-relaxed">Desenvolvo um desenho autoral e exclusivo, alinhado às suas expectativas. Ajustamos juntos até ficar do seu jeito.</p>
+      </li>
+      <li class="border-t-2 border-line pt-6">
+        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">03</div>
+        <h3 class="font-display text-2xl text-bone mb-2">Sessão</h3>
+        <p class="text-mute leading-relaxed">Execução com biossegurança rigorosa e acabamento de alto nível, com orientação completa de cuidados pós-tatuagem.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ORÇAMENTO ============ -->
+<section id="orcamento" class="relative z-10 bg-ink border-t hairline">
+  <div class="mx-auto max-w-3xl px-5 py-24 md:py-32">
+    <div class="text-center mb-12">
+      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Orçamento</p>
+      <h2 class="font-display text-4xl md:text-5xl text-paper">Faça seu orçamento</h2>
+      <p class="text-mute mt-4 max-w-xl mx-auto">Preencha os dados abaixo. Ao enviar, abre o WhatsApp com a mensagem já pronta — é só mandar.</p>
+    </div>
+
+    <form id="quote" class="space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <label class="block">
+          <span class="text-xs tracking-[.1em] uppercase text-fog">Seu nome</span>
+          <input name="nome" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Nome completo" />
+        </label>
+        <label class="block">
+          <span class="text-xs tracking-[.1em] uppercase text-fog">Estilo desejado</span>
+          <select name="estilo" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone focus:border-paper focus:outline-none">
+            <option value="">Selecione</option>
+            <option>Realismo</option>
+            <option>Fine Line</option>
+            <option>Fechamento</option>
+            <option>Cover-up</option>
+            <option>Ainda não sei / me ajude a decidir</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="text-xs tracking-[.1em] uppercase text-fog">Local do corpo</span>
+          <input name="local" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Ex.: antebraço, costas, perna" />
+        </label>
+        <label class="block">
+          <span class="text-xs tracking-[.1em] uppercase text-fog">Tamanho aproximado</span>
+          <input name="tamanho" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Ex.: 15 cm, palma da mão, fechamento" />
+        </label>
+      </div>
+
+      <label class="block">
+        <span class="text-xs tracking-[.1em] uppercase text-fog">É cobertura de tatuagem antiga (cover-up)?</span>
+        <select name="cover" class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone focus:border-paper focus:outline-none">
+          <option>Não</option>
+          <option>Sim</option>
+        </select>
+      </label>
+
+      <label class="block">
+        <span class="text-xs tracking-[.1em] uppercase text-fog">Descreva sua ideia / referências</span>
+        <textarea name="ideia" rows="4" class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Conte o que você imagina. Se tiver imagens de referência, pode mandá-las no WhatsApp depois."></textarea>
+      </label>
+
+      <button type="submit" class="w-full rounded-full bg-paper px-8 py-4 text-sm tracking-wide uppercase font-medium text-ink hover:bg-bone transition inline-flex items-center justify-center gap-2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.317l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Enviar pelo WhatsApp
+      </button>
+      <p class="text-center text-xs text-fog">Sem compromisso. Resposta o mais breve possível.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ LOCAL ============ -->
+<section id="local" class="relative z-10 bg-panel border-t hairline">
+  <div class="mx-auto max-w-6xl px-5 pt-24 pb-28 md:py-32 grid md:grid-cols-2 gap-12 items-start">
+    <div>
+      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Estúdio</p>
+      <h2 class="font-display text-4xl md:text-5xl text-paper mb-8">Onde a arte acontece</h2>
+
+      <div class="space-y-6 text-mute">
+        <div>
+          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Endereço</div>
+          <p class="text-bone">Rua Duílio Calderari, 926</p>
+          <p>Curitiba — PR</p>
+        </div>
+        <div>
+          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Atendimento</div>
+          <p>Segunda a sexta · 10h às 18h</p>
+          <p>Sábado · 10h às 13h</p>
+          <p>Domingo · fechado</p>
+        </div>
+        <div>
+          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Contato</div>
+          <a href="https://wa.me/5541992702189" class="text-bone hover:text-paper transition block">WhatsApp: (41) 99270-2189</a>
+          <a href="https://instagram.com/fabioantunestattoo" class="text-bone hover:text-paper transition block">@fabioantunestattoo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-lg overflow-hidden border hairline h-80 md:h-full md:aspect-auto">
+      <iframe
+        title="Mapa do estúdio"
+        class="block w-full h-full grayscale contrast-125"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Rua%20Du%C3%ADlio%20Calderari%2C%20926%20Curitiba%20PR&output=embed">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative z-10 bg-void border-t hairline">
+  <div class="mx-auto max-w-6xl px-5 pt-16 pb-8 grid md:grid-cols-3 gap-10">
+    <div>
+      <div class="font-display font-bold text-lg text-paper">FÁBIO ANTUNES</div>
+      <div class="text-xs tracking-[.3em] text-fog mt-1 uppercase">Tattoo · Desde 2005</div>
+      <p class="text-mute text-sm mt-4 max-w-xs leading-relaxed">Realismo, fine line e fechamentos autorais, com biossegurança e acabamento de alto nível.</p>
+    </div>
+    <div>
+      <div class="text-xs tracking-[.1em] uppercase text-fog mb-4">Navegação</div>
+      <div class="flex flex-col gap-2 text-sm text-mute">
+        <a href="#sobre" class="hover:text-paper transition">Sobre</a>
+        <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
+        <a href="#processo" class="hover:text-paper transition">Como funciona</a>
+        <a href="#orcamento" class="hover:text-paper transition">Orçamento</a>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs tracking-[.1em] uppercase text-fog mb-4">Estúdio</div>
+      <div class="flex flex-col gap-2 text-sm text-mute">
+        <span>Rua Duílio Calderari, 926 — Curitiba, PR</span>
+        <a href="https://wa.me/5541992702189" class="hover:text-paper transition">WhatsApp</a>
+        <a href="https://instagram.com/fabioantunestattoo" class="hover:text-paper transition">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t hairline">
+    <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-fog">
+      <p>© <span id="year"></span> Fábio Antunes. Todos os direitos reservados.</p>
+      <a href="https://kadosh-tech.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-paper transition">Desenvolvido por Kadosh Tech</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/95 p-6">
+  <button id="lb-close" class="absolute top-6 right-6 text-bone/70 hover:text-paper" aria-label="Fechar">✕</button>
+  <div class="max-w-2xl w-full">
+    <div class="rounded-lg border hairline overflow-hidden bg-panel">
+      <img id="lb-img" src="" alt="" class="w-full h-auto max-h-[75vh] object-contain" />
+    </div>
+    <p id="lb-label" class="text-center text-mute mt-4"></p>
+  </div>
+</div>
+
+<script>
+  // ano
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // menu hamburguer (mobile)
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  const setMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuIconOpen.classList.toggle('hidden', open);
+    menuIconClose.classList.toggle('hidden', !open);
+  };
+  menuToggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+
+  // scroll suave próprio (não depende do scroll-behavior nativo do navegador)
+  const HEADER_OFFSET = 80;
+  const SCROLL_DURATION = 600;
+  const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  function smoothScrollTo(target) {
+    const startY = window.scrollY;
+    const destY = target.getBoundingClientRect().top + startY - HEADER_OFFSET;
+    const distance = destY - startY;
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / SCROLL_DURATION, 1);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // aplica a todos os links de âncora internos da página (header, menu mobile, hero, footer)
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    const hash = link.getAttribute('href');
+    if (hash === '#') return;
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      setMenu(false);
+      smoothScrollTo(target);
+    });
+  });
+
+  // nav solid ao rolar
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('bg-ink/90', window.scrollY > 40) || nav.classList.toggle('backdrop-blur', window.scrollY > 40) || nav.classList.toggle('border-b', window.scrollY > 40) || nav.classList.toggle('hairline', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll); onScroll();
+
+  // reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+  // filtro portfólio
+  const btns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.grid-item');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    const f = b.dataset.filter;
+    items.forEach(it => {
+      const show = f === 'all' || it.dataset.style === f;
+      it.style.display = show ? '' : 'none';
+    });
+  }));
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbLabel = document.getElementById('lb-label');
+  const lbImg = document.getElementById('lb-img');
+  items.forEach(it => it.addEventListener('click', () => {
+    lbLabel.textContent = it.dataset.label || '';
+    lbImg.src = it.dataset.img || '';
+    lbImg.alt = it.dataset.label || '';
+    lb.classList.remove('hidden'); lb.classList.add('flex');
+  }));
+  const closeLb = () => { lb.classList.add('hidden'); lb.classList.remove('flex'); };
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // form -> WhatsApp
+  const WHATS = '5541992702189';
+  document.getElementById('quote').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    const g = n => (f.elements[n]?.value || '').trim();
+    const msg =
+      `Olá, Fábio! Quero fazer um orçamento.%0A%0A` +
+      `*Nome:* ${g('nome')}%0A` +
+      `*Estilo:* ${g('estilo')}%0A` +
+      `*Local do corpo:* ${g('local')}%0A` +
+      `*Tamanho:* ${g('tamanho')}%0A` +
+      `*Cover-up:* ${g('cover')}%0A` +
+      (g('ideia') ? `*Ideia:* ${g('ideia')}%0A` : '');
+    window.open(`https://wa.me/${WHATS}?text=${msg}`, '_blank');
+  });
+</script>
+</body>
+</html>
