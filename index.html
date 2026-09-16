@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fábio Antunes — Tatuador | Realismo &amp; Fechamentos</title>
-<meta name="description" content="Fábio Antunes, tatuador profissional há mais de 20 anos. Especialista em realismo, fine line e fechamentos. Faça seu orçamento." />
+<title>Mel Seideler — NeoOriental Tattoo | São Paulo</title>
+<meta name="description" content="Mel Seideler (@mseideler) — tatuadora especialista em NeoOriental, arte autoral e linhas dinâmicas. Houju Tattoo, São Paulo. Europe Guest Tour 2027. Agende pelo WhatsApp." />
+<meta name="theme-color" content="#0F0F0F" />
 
 <!-- ================= AJUSTAR NO CLAUDE CODE =================
-  WHATSAPP: 5541992702189  (DDD 41 = Curitiba/PR — confirmar)
-  ENDEREÇO: Rua Duílio Calderari, 926 — CIDADE A CONFIRMAR (assumido Curitiba/PR)
+  WHATSAPP: 5511958415148
+  INSTAGRAM: mseideler
+  ESTÚDIO: Houju Tattoo — São Paulo, SP  (endereço exato a confirmar)
+  IMAGENS: usando artes reais em /img
 ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -21,472 +24,587 @@
     theme: {
       extend: {
         colors: {
-          void:   '#050505',
-          ink:    '#0A0A0A',
-          panel:  '#121212',
-          surface:'#161616',
-          line:   '#262626',
-          linelt: '#3A3A3A',
-          fog:    '#8A8A8A',
-          mute:   '#A8A8A8',
-          bone:   '#E5E5E5',
-          paper:  '#FFFFFF',
+          sumi:   '#0F0F0F', /* asfalto / grafite escuro (base) */
+          kuro:   '#0A0A0A', /* mais fundo */
+          ish:    '#161616', /* superfície */
+          plate:  '#1C1C1C', /* cartões / inputs */
+          kes:    '#2A2A2A', /* linhas */
+          keslt:  '#3C3C3C', /* linhas claras */
+          ash:    '#8C8C8C', /* texto apagado */
+          smoke:  '#B3ADA3', /* texto secundário quente */
+          bone:   '#E8E4DD', /* marfim (texto principal) */
+          washi:  '#F4F1EA', /* marfim claro */
+          shu:    '#B7332B', /* vermelho selo (hanko) — usar com contenção */
         },
         fontFamily: {
-          display: ['"Bodoni Moda"', 'serif'],
-          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Anton', 'Impact', 'sans-serif'],
+          sans: ['Archivo', 'system-ui', 'sans-serif'],
         },
       },
     },
   };
 </script>
+
 <style>
-  body { background: #0A0A0A; }
+  html { scroll-behavior: auto; }
+  body { background:#0F0F0F; }
+
+  /* textura de papel sutil */
   .grain::before{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.045; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .hairline{ border-color:#262626; }
-  [data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+
+  .rule{ border-color:#2A2A2A; }
+
+  /* trilho vertical decorativo */
+  .siderail{
+    position:fixed; top:0; bottom:0; left:0; width:52px; z-index:30;
+    display:flex; align-items:center; justify-content:center; pointer-events:none;
+  }
+  .siderail .vtext{
+    writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg);
+    font-size:10px; letter-spacing:.5em; text-transform:uppercase; color:#6a6a6a;
+    white-space:nowrap;
+  }
+  .siderail::before{ content:""; position:absolute; left:26px; top:12%; bottom:12%; width:1px; background:#2A2A2A; }
+  @media (max-width:900px){ .siderail{ display:none; } }
+
+  /* reveal */
+  [data-reveal]{ opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
   [data-reveal].in{ opacity:1; transform:none; }
+  [data-reveal][data-delay="1"]{ transition-delay:.08s; }
+  [data-reveal][data-delay="2"]{ transition-delay:.16s; }
+  [data-reveal][data-delay="3"]{ transition-delay:.24s; }
+
+  /* filtro ativo — sublinhado shu, sem pílula */
+  .filter-btn{ position:relative; }
+  .filter-btn::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-6px; height:2px; background:#B7332B; transition:right .35s ease;
+  }
+  .filter-btn[aria-pressed="true"]{ color:#F4F1EA; }
+  .filter-btn[aria-pressed="true"]::after{ right:0; }
+
+  /* galeria masonry */
+  #grid{ column-gap:14px; }
+  @media (min-width:640px){ #grid{ column-count:2; } }
+  @media (min-width:1024px){ #grid{ column-count:3; } }
+  .grid-item{ break-inside:avoid; width:100%; margin-bottom:14px; display:block; }
+  .grid-item .frame{ position:relative; overflow:hidden; background:#161616; border:1px solid #2A2A2A; }
+  .grid-item img{ display:block; width:100%; height:auto; filter:contrast(1.06) brightness(.9) saturate(.92); transition:filter .6s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .grid-item:hover img{ filter:contrast(1.04) brightness(1) saturate(1); transform:scale(1.045); }
+  /* moldura interna que "desenha" no hover */
+  .grid-item .inl{ position:absolute; inset:10px; border:1px solid rgba(244,241,234,0); transition:border-color .5s ease; pointer-events:none; }
+  .grid-item:hover .inl{ border-color:rgba(244,241,234,.35); }
+  .grid-item .tick{ position:absolute; top:0; right:0; width:14px; height:14px; border-top:2px solid #B7332B; border-right:2px solid #B7332B; opacity:0; transition:opacity .4s ease; }
+  .grid-item:hover .tick{ opacity:1; }
+  .grid-item .cap{ position:absolute; left:12px; bottom:10px; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#E8E4DD; opacity:0; transform:translateY(6px); transition:.45s ease; }
+  .grid-item:hover .cap{ opacity:1; transform:none; }
+
+  #mobile-menu{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  #mobile-menu.open{ max-height:22rem; }
+
+  section[id]{ scroll-margin-top:6rem; }
+
+  input, select, textarea{ font-family:inherit; }
+
   @media (prefers-reduced-motion: reduce){
     [data-reveal]{ opacity:1 !important; transform:none !important; transition:none; }
+    .grid-item img{ transition:none; }
+    #enso-stroke{ stroke-dasharray:none !important; }
   }
-  .filter-btn[aria-pressed="true"]{ color:#0A0A0A; background:#E5E5E5; border-color:#E5E5E5; }
-  .photo{ filter:grayscale(1) contrast(1.08) brightness(.92); transition:filter .6s ease, transform .6s ease; }
-  .group:hover .photo{ filter:grayscale(0) contrast(1.05) brightness(.95); transform:scale(1.06); }
-  .editorial-num{ font-variant-numeric: lining-nums; }
-  #top, #sobre, #trabalhos, #processo, #orcamento, #local{ scroll-margin-top: 5rem; }
-  #mobile-menu{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
-  #mobile-menu.open{ max-height:24rem; }
 </style>
 </head>
 
-<body class="grain font-sans text-bone antialiased selection:bg-paper selection:text-ink">
+<body class="grain font-sans text-bone antialiased selection:bg-shu selection:text-washi">
+
+<!-- trilho vertical -->
+<div class="siderail" aria-hidden="true"><span class="vtext">朱 · NeoOriental · São Paulo</span></div>
 
 <!-- ============ NAV ============ -->
-<header id="nav" class="fixed top-0 inset-x-0 z-40 transition-colors duration-300">
-  <div class="mx-auto max-w-6xl px-5 h-20 flex items-center justify-between gap-3">
-    <a href="#top" class="leading-none shrink-0">
-      <span class="block font-display font-bold text-lg tracking-tight text-paper">FÁBIO ANTUNES</span>
-      
+<header id="nav" class="fixed top-0 inset-x-0 z-40 transition-all duration-300">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 h-20 flex items-center justify-between gap-3">
+    <a href="#top" class="leading-none shrink-0 flex items-baseline gap-2">
+      <span class="font-display text-xl tracking-wide text-washi">MEL SEIDELER</span>
+      <span class="hidden sm:inline text-[10px] tracking-[.35em] text-ash uppercase">彫</span>
     </a>
-    <nav class="hidden md:flex items-center gap-8 text-xs tracking-[.15em] uppercase text-mute">
-      <a href="#sobre" class="hover:text-paper transition">Sobre</a>
-      <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
-      <a href="#processo" class="hover:text-paper transition">Como funciona</a>
-      <a href="#local" class="hover:text-paper transition">Estúdio</a>
+    <nav class="hidden md:flex items-center gap-9 text-[11px] tracking-[.22em] uppercase text-ash">
+      <a href="#top" class="hover:text-washi transition">Início</a>
+      <a href="#sobre" class="hover:text-washi transition">Sobre</a>
+      <a href="#portfolio" class="hover:text-washi transition">Portfólio</a>
+      <a href="#guests" class="hover:text-washi transition">Guests</a>
     </nav>
-    <div class="flex items-center gap-2 shrink-0">
-      <a href="#orcamento" class="inline-flex items-center gap-2 rounded-full border border-linelt px-4 py-2 text-xs md:px-5 md:py-2.5 tracking-[.1em] uppercase text-bone hover:border-paper hover:text-paper transition whitespace-nowrap">
-        <span class="md:hidden">Orçamento</span>
-        <span class="hidden md:inline">Solicitar orçamento</span>
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="#orcamento" class="hidden sm:inline-flex items-center border border-keslt px-5 py-2.5 text-[11px] tracking-[.2em] uppercase text-bone hover:border-bone hover:text-washi transition">
+        Orçamento
       </a>
-      <button id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-linelt text-bone hover:border-paper hover:text-paper transition">
-        <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      <button id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 border border-keslt text-bone hover:border-bone transition">
+        <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+        <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-ink/95 backdrop-blur border-b hairline">
-    <nav class="mx-auto max-w-6xl px-5 py-4 flex flex-col gap-4 text-sm tracking-[.1em] uppercase text-mute">
-      <a href="#sobre" class="hover:text-paper transition">Sobre</a>
-      <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
-      <a href="#processo" class="hover:text-paper transition">Como funciona</a>
-      <a href="#local" class="hover:text-paper transition">Estúdio</a>
-      <a href="#orcamento" class="hover:text-paper transition">Fazer orçamento</a>
+  <div id="mobile-menu" class="md:hidden bg-kuro/95 backdrop-blur border-b rule">
+    <nav class="px-6 py-5 flex flex-col gap-4 text-sm tracking-[.15em] uppercase text-smoke">
+      <a href="#top" class="hover:text-washi transition">Início</a>
+      <a href="#sobre" class="hover:text-washi transition">Sobre</a>
+      <a href="#portfolio" class="hover:text-washi transition">Portfólio</a>
+      <a href="#guests" class="hover:text-washi transition">Guests</a>
+      <a href="#orcamento" class="hover:text-washi transition">Orçamento</a>
     </nav>
   </div>
 </header>
 
 <!-- ============ HERO ============ -->
-<section id="top" class="relative min-h-[100svh] flex items-end overflow-hidden bg-ink">
-  <div class="absolute inset-0">
-    <img src="img/foto(9).jpg" alt="" aria-hidden="true" class="w-full h-full object-cover object-[center_20%] grayscale contrast-110 opacity-45" />
+<section id="top" class="relative min-h-[100svh] overflow-hidden bg-sumi flex items-center">
+  <!-- imagem lateral -->
+  <div class="absolute inset-y-0 right-0 w-full md:w-[46%]">
+    <img src="img/foto (9).png"
+         alt="Detalhe de tatuagem NeoOriental" class="w-full h-full object-cover object-center opacity-70 md:opacity-90"
+         data-ph="Retrato / arte" onerror="phFill(this)" />
+    <div class="absolute inset-0 bg-gradient-to-r from-sumi via-sumi/70 md:via-sumi/30 to-transparent"></div>
+    <div class="absolute inset-0 md:hidden bg-sumi/55"></div>
   </div>
-  <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/60"></div>
 
-  <div class="relative z-10 mx-auto max-w-6xl px-5 pb-16 md:pb-24 w-full">
-    <p data-reveal class="text-mute tracking-[.4em] text-xs mb-5 uppercase">Realismo · Fine Line · Fechamentos</p>
-    <h1 data-reveal class="font-display font-bold leading-[.92] text-[15vw] md:text-[9rem] text-paper">
-      Fábio<br>Antunes
-    </h1>
-    <p data-reveal class="mt-6 max-w-xl text-mute text-lg leading-relaxed">
-      Mais de 20 anos transformando ideias em projetos exclusivos — com precisão técnica,
-      biossegurança rigorosa e acabamento de alto nível.
+  <!-- enso atrás do nome -->
+  <svg class="absolute -left-10 md:left-8 top-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] opacity-[.10] pointer-events-none" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <path id="enso-stroke" d="M158 66 C150 40 122 26 96 28 C56 31 30 64 33 104 C36 143 72 170 112 165 C142 161 165 138 168 110"
+      stroke="#F4F1EA" stroke-width="9" stroke-linecap="round"/>
+  </svg>
+
+  <div class="relative z-10 mx-auto max-w-7xl w-full pl-6 md:pl-16 pr-5">
+    <p data-reveal class="text-shu tracking-[.4em] text-[11px] mb-6 uppercase flex items-center gap-3">
+      <span class="inline-block w-8 h-px bg-shu"></span>NeoOriental Tattoo
     </p>
-    <div data-reveal class="mt-9 flex flex-wrap gap-4">
-      <a href="#orcamento" class="rounded-full bg-paper px-7 py-3.5 text-sm tracking-wide uppercase font-medium text-ink hover:bg-bone transition">
-        Solicitar orçamento
+    <h1 data-reveal data-delay="1" class="font-display leading-[.86] text-washi text-[19vw] md:text-[10.5rem] tracking-tight">
+      MEL<br>SEIDELER
+    </h1>
+    <p data-reveal data-delay="2" class="mt-7 max-w-md text-smoke text-lg leading-relaxed">
+      Arte autoral em linhas dinâmicas e estética oriental contemporânea.
+      Baseada no <span class="text-bone">Houju Tattoo</span>, São Paulo.
+    </p>
+    <div data-reveal data-delay="3" class="mt-9 flex flex-wrap items-center gap-4">
+      <a href="https://wa.me/5511958415148" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2.5 bg-washi text-sumi px-8 py-4 text-[12px] tracking-[.18em] uppercase font-semibold hover:bg-bone transition">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.317l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Agendar no WhatsApp
       </a>
-      <a href="#trabalhos" class="rounded-full border border-linelt px-7 py-3.5 text-sm tracking-wide uppercase font-medium text-bone hover:border-paper hover:text-paper transition">
-        Ver trabalhos
+      <a href="#portfolio" class="inline-flex items-center gap-2 border border-keslt px-8 py-4 text-[12px] tracking-[.18em] uppercase text-bone hover:border-bone hover:text-washi transition">
+        Ver portfólio
       </a>
     </div>
   </div>
+
+  <!-- rodapé do hero -->
+  <div class="absolute bottom-6 left-6 md:left-16 right-5 z-10 flex items-center justify-between text-[10px] tracking-[.3em] uppercase text-ash">
+    <span>48,1 mil · @mseideler</span>
+    <span class="hidden sm:inline">Europe Guest Tour — 2027</span>
+  </div>
 </section>
 
-<!-- ============ SOBRE ============ -->
-<section id="sobre" class="relative z-10 bg-panel border-t hairline">
-  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32 grid md:grid-cols-12 gap-12">
+<!-- ============ SOBRE / STATS ============ -->
+<section id="sobre" class="relative z-10 bg-kuro border-t rule">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-24 md:py-32 grid md:grid-cols-12 gap-x-12 gap-y-14">
     <div class="md:col-span-5">
-      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Sobre</p>
-      <h2 data-reveal class="font-display text-4xl md:text-5xl leading-tight text-paper">
-        Cada tatuagem exige atenção total, do desenho à última linha.
+      <div class="flex items-center gap-4 mb-6">
+        <span class="font-display text-shu text-sm">壱</span>
+        <span class="text-ash tracking-[.35em] text-[11px] uppercase">Sobre</span>
+      </div>
+      <h2 data-reveal class="font-display text-4xl md:text-6xl leading-[.95] text-washi uppercase">
+        A linha<br>como<br>assinatura
       </h2>
-      <div class="mt-8 mb-8 md:mt-10 md:mb-0 aspect-[4/5] rounded-lg border hairline overflow-hidden">
-        <img src="img/foto%20(1).png" alt="Retrato de Fábio Antunes, tatuador" class="w-full h-full object-cover grayscale contrast-110" />
+      <div class="mt-9 aspect-[4/5] border rule overflow-hidden bg-ish">
+        <img src="img/mel.png"
+             alt="Mel Seideler tatuando" class="w-full h-full object-cover" data-ph="Retrato" onerror="phFill(this)" />
       </div>
     </div>
 
-    <div class="md:col-span-7 md:pt-10">
-      <div data-reveal class="space-y-5 text-mute leading-relaxed text-[1.05rem]">
+    <div class="md:col-span-7 md:pt-16">
+      <div data-reveal class="space-y-5 text-smoke leading-relaxed text-[1.06rem] max-w-xl">
         <p>
-          Sou Fábio Antunes, tatuador profissional com mais de 20 anos de experiência.
-          Minha atuação é pautada pela ética, responsabilidade técnica e pelo respeito absoluto
-          à pele do cliente — sempre seguindo rigorosos padrões de biossegurança, com materiais
-          de alta qualidade e técnicas consolidadas ao longo da trajetória.
+          Sou Mel Seideler. Meu trabalho vive no encontro entre a tradição oriental e o traço
+          contemporâneo — o que chamo de <span class="text-bone">NeoOriental</span>: composições autorais,
+          movimento e linhas que respiram junto com o corpo.
         </p>
         <p>
-          Sou especializado em diferentes estilos, com foco em <span class="text-bone">realismo</span> e
-          <span class="text-bone">fine line</span>, onde aplico precisão técnica, controle de profundidade e
-          alto nível de acabamento. Tenho amplo comprometimento com projetos de
-          <span class="text-bone">fechamento</span> de alto nível, desenvolvidos de forma estratégica e
-          personalizada, respeitando a anatomia do cliente em busca de um resultado estético superior.
+          Cada projeto nasce de um diálogo. Estudo a anatomia, o fluxo e a história de quem senta na maca
+          para construir algo que não se repete. Precisão técnica, leitura de forma e respeito absoluto
+          à pele guiam cada sessão.
         </p>
         <p>
-          Atendo com o mesmo padrão de excelência tanto projetos pequenos quanto trabalhos de grande
-          escala. Valorizo o atendimento individualizado e o diálogo transparente: busco compreender
-          expectativas, referências e objetivos de cada cliente, transformando ideias em projetos
-          exclusivos, tecnicamente seguros e esteticamente consistentes.
+          Baseada no <span class="text-bone">Houju Tattoo</span>, em São Paulo, com agenda nacional e
+          convites internacionais para 2027.
         </p>
       </div>
 
-      <!-- stats -->
-      <div class="mt-12 grid grid-cols-3 gap-6 border-t hairline pt-8">
+      <div class="mt-12 grid grid-cols-3 gap-6 border-t rule pt-8 max-w-xl">
         <div>
-          <div class="font-display font-bold text-4xl text-paper editorial-num">20+</div>
-          <div class="text-sm text-fog mt-1">anos de atuação</div>
+          <div class="font-display text-4xl md:text-5xl text-washi">48<span class="text-shu">,1k</span></div>
+          <div class="text-[13px] text-ash mt-2 leading-snug">seguidores<br>no Instagram</div>
         </div>
         <div>
-          <div class="font-display font-bold text-4xl text-paper editorial-num">2005</div>
-          <div class="text-sm text-fog mt-1">profissional desde</div>
+          <div class="font-display text-4xl md:text-5xl text-washi">100%</div>
+          <div class="text-[13px] text-ash mt-2 leading-snug">projetos<br>autorais</div>
         </div>
         <div>
-          <div class="font-display font-bold text-4xl text-paper editorial-num">100%</div>
-          <div class="text-sm text-fog mt-1">projetos autorais</div>
+          <div class="font-display text-4xl md:text-5xl text-washi">2027</div>
+          <div class="text-[13px] text-ash mt-2 leading-snug">Europe<br>Guest Tour</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ TRABALHOS (PORTFÓLIO FILTRÁVEL) ============ -->
-<section id="trabalhos" class="relative z-10 bg-ink border-t hairline">
-  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32">
+<!-- ============ CONCEITO: ARTISTRY / DEVOTION / PASSION ============ -->
+<section id="conceito" class="relative z-10 bg-sumi border-t rule">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-24 md:py-32">
+    <div class="text-center mb-16">
+      <span class="text-ash tracking-[.35em] text-[11px] uppercase">Filosofia do traço</span>
+    </div>
+    <div class="grid md:grid-cols-3 gap-x-12 gap-y-14">
+      <!-- ARTISTRY / enso -->
+      <div data-reveal class="text-center flex flex-col items-center">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mb-7" aria-hidden="true">
+          <path d="M51 22 C48 13 39 8 30 9 C17 10 8 21 9 34 C10 47 22 56 35 54 C45 52 52 44 53 35"
+            stroke="#E8E4DD" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+        <h3 class="font-display text-2xl tracking-wide text-washi mb-3">ARTISTRY</h3>
+        <p class="text-smoke leading-relaxed max-w-xs">Composição autoral. Nenhum desenho é catálogo — cada peça é feita para uma única pele.</p>
+      </div>
+      <!-- DEVOTION / seigaiha -->
+      <div data-reveal data-delay="1" class="text-center flex flex-col items-center">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mb-7" aria-hidden="true">
+          <path d="M6 44 A26 26 0 0 1 58 44" stroke="#E8E4DD" stroke-width="2.6" fill="none"/>
+          <path d="M14 44 A18 18 0 0 1 50 44" stroke="#E8E4DD" stroke-width="2.6" fill="none" opacity=".7"/>
+          <path d="M22 44 A10 10 0 0 1 42 44" stroke="#E8E4DD" stroke-width="2.6" fill="none" opacity=".45"/>
+        </svg>
+        <h3 class="font-display text-2xl tracking-wide text-washi mb-3">DEVOTION</h3>
+        <p class="text-smoke leading-relaxed max-w-xs">Rigor em cada linha. Biossegurança, estudo de fluxo e horas de refino até o traço fechar.</p>
+      </div>
+      <!-- PASSION / asanoha -->
+      <div data-reveal data-delay="2" class="text-center flex flex-col items-center">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mb-7" aria-hidden="true">
+          <g stroke="#E8E4DD" stroke-width="2.6" stroke-linejoin="round">
+            <path d="M32 8 L32 32 M32 32 L52 44 M32 32 L12 44 M32 32 L32 56 M32 32 L52 20 M32 32 L12 20"/>
+            <path d="M32 8 L52 20 L52 44 L32 56 L12 44 L12 20 Z" opacity=".55"/>
+          </g>
+        </svg>
+        <h3 class="font-display text-2xl tracking-wide text-washi mb-3">PASSION</h3>
+        <p class="text-smoke leading-relaxed max-w-xs">Estética oriental viva. Movimento, símbolo e significado costurados no corpo com intenção.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFÓLIO / ART SHOWCASE ============ -->
+<section id="portfolio" class="relative z-10 bg-kuro border-t rule">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-24 md:py-32">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
       <div>
-        <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Portfólio</p>
-        <h2 class="font-display text-4xl md:text-5xl text-paper">Trabalhos por estilo</h2>
+        <div class="flex items-center gap-4 mb-5">
+          <span class="font-display text-shu text-sm">弐</span>
+          <span class="text-ash tracking-[.35em] text-[11px] uppercase">Art Showcase</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-6xl text-washi uppercase leading-none">Portfólio</h2>
       </div>
-      <p class="text-mute max-w-sm">Filtre pelo estilo que você procura. Toque na imagem para ampliar.</p>
+      <p class="text-smoke max-w-sm md:text-right">Toque em uma arte para ampliar.</p>
     </div>
 
-    <!-- filtros -->
-    <div class="flex flex-wrap gap-3 mb-10" role="group" aria-label="Filtrar por estilo">
-      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="all" aria-pressed="true">Todos</button>
-      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="realismo" aria-pressed="false">Realismo</button>
-      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="fechamento" aria-pressed="false">Fechamentos</button>
-      <button class="filter-btn rounded-full border border-linelt px-5 py-2 text-xs tracking-[.1em] uppercase text-mute hover:text-paper transition" data-filter="fineline" aria-pressed="false">Fine Line</button>
-    </div>
-
-    <div id="grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — peito, iconografia sacra" data-img="img/foto%20(2).png">
-        <img src="img/foto%20(2).png" alt="Tatuagem realismo no peito" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
-      </button>
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — braço, retrato" data-img="img/foto%20(3).png">
-        <img src="img/foto%20(3).png" alt="Tatuagem realismo no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
-      </button>
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="realismo" data-label="Realismo — braço, retrato sacro" data-img="img/foto%20(4).png">
-        <img src="img/foto%20(4).png" alt="Tatuagem realismo religioso no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Realismo</span>
-      </button>
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — perna" data-img="img/foto%20(5).png">
-        <img src="img/foto%20(5).png" alt="Tatuagem de fechamento na perna" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
-      </button>
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — braço" data-img="img/foto%20(6).png">
-        <img src="img/foto%20(6).png" alt="Tatuagem de fechamento no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
-      </button>
-      <button class="grid-item group relative aspect-[4/5] overflow-hidden rounded-lg border hairline" data-style="fechamento" data-label="Fechamento — braço, religioso" data-img="img/foto%20(7).png">
-        <img src="img/foto%20(7).png" alt="Tatuagem de fechamento religioso no braço" loading="lazy" class="photo absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 group-hover:from-ink/40 transition"></div>
-        <span class="absolute left-3 bottom-3 text-[11px] tracking-[.15em] uppercase text-bone/90">Fechamento</span>
-      </button>
-     
-    </div>
+    <!-- grid masonry (populado via JS) -->
+    <div id="grid"></div>
   </div>
 </section>
 
-<!-- ============ PROCESSO ============ -->
-<section id="processo" class="relative z-10 bg-panel border-t hairline">
-  <div class="mx-auto max-w-6xl px-5 py-24 md:py-32">
-    <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Como funciona</p>
-    <h2 class="font-display text-4xl md:text-5xl text-paper mb-14 max-w-2xl">Do primeiro contato à tatuagem pronta</h2>
+<!-- ============ GUESTS / EUROPE TOUR 2027 ============ -->
+<section id="guests" class="relative z-10 bg-sumi border-t rule overflow-hidden">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-24 md:py-32 grid md:grid-cols-12 gap-x-12 gap-y-12 items-start">
+    <div class="md:col-span-5">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="font-display text-shu text-sm">参</span>
+        <span class="text-ash tracking-[.35em] text-[11px] uppercase">Guest Spots</span>
+      </div>
+      <h2 data-reveal class="font-display text-4xl md:text-6xl leading-[.95] text-washi uppercase">
+        Europe<br>Guest<br>Tour <span class="text-shu">’27</span>
+      </h2>
+      <p data-reveal class="mt-8 text-smoke leading-relaxed max-w-md">
+        Agenda nacional aberta durante o ano e temporada europeia confirmada para 2027.
+        Vagas de guest são limitadas — reserve antecipado pelo WhatsApp.
+      </p>
+      <a href="https://wa.me/5511958415148?text=Ol%C3%A1%20Mel!%20Quero%20reservar%20um%20guest%20spot."
+         target="_blank" rel="noopener"
+         class="mt-8 inline-flex items-center gap-2 border border-keslt px-7 py-3.5 text-[12px] tracking-[.18em] uppercase text-bone hover:border-bone hover:text-washi transition">
+        Reservar guest spot
+      </a>
+    </div>
 
-    <ol class="grid md:grid-cols-3 gap-8">
-      <li class="border-t-2 border-paper pt-6">
-        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">01</div>
-        <h3 class="font-display text-2xl text-bone mb-2">Orçamento</h3>
-        <p class="text-mute leading-relaxed">Você envia estilo, local do corpo, tamanho e referências pelo formulário. Eu respondo com valor e disponibilidade.</p>
-      </li>
-      <li class="border-t-2 border-line pt-6">
-        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">02</div>
-        <h3 class="font-display text-2xl text-bone mb-2">Projeto</h3>
-        <p class="text-mute leading-relaxed">Desenvolvo um desenho autoral e exclusivo, alinhado às suas expectativas. Ajustamos juntos até ficar do seu jeito.</p>
-      </li>
-      <li class="border-t-2 border-line pt-6">
-        <div class="font-display font-bold text-2xl text-paper mb-3 editorial-num">03</div>
-        <h3 class="font-display text-2xl text-bone mb-2">Sessão</h3>
-        <p class="text-mute leading-relaxed">Execução com biossegurança rigorosa e acabamento de alto nível, com orientação completa de cuidados pós-tatuagem.</p>
-      </li>
-    </ol>
+    <!-- itinerário (sequência real → datas justificam ordem) -->
+    <div class="md:col-span-7 md:pt-4">
+      <ol class="divide-y rule border-t border-b rule">
+        <li data-reveal class="flex items-baseline gap-6 py-6">
+          <span class="font-display text-3xl text-washi w-24 shrink-0">SP</span>
+          <div class="flex-1">
+            <div class="text-bone">São Paulo — Houju Tattoo</div>
+            <div class="text-ash text-sm mt-1">Base fixa · agenda o ano todo</div>
+          </div>
+          <span class="text-[11px] tracking-[.2em] uppercase text-shu">Aberto</span>
+        </li>
+        <li data-reveal class="flex items-baseline gap-6 py-6">
+          <span class="font-display text-3xl text-washi w-24 shrink-0">LIS</span>
+          <div class="flex-1">
+            <div class="text-bone">Lisboa — Portugal</div>
+            <div class="text-ash text-sm mt-1">Guest · abertura da temporada</div>
+          </div>
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Mar · 2027</span>
+        </li>
+        <li data-reveal class="flex items-baseline gap-6 py-6">
+          <span class="font-display text-3xl text-washi w-24 shrink-0">BCN</span>
+          <div class="flex-1">
+            <div class="text-bone">Barcelona — Espanha</div>
+            <div class="text-ash text-sm mt-1">Guest · lista de espera</div>
+          </div>
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Abr · 2027</span>
+        </li>
+        <li data-reveal class="flex items-baseline gap-6 py-6">
+          <span class="font-display text-3xl text-washi w-24 shrink-0">BER</span>
+          <div class="flex-1">
+            <div class="text-bone">Berlim — Alemanha</div>
+            <div class="text-ash text-sm mt-1">Guest · datas a confirmar</div>
+          </div>
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Mai · 2027</span>
+        </li>
+      </ol>
+      <p class="text-ash text-xs mt-5 tracking-wide">* Cidades e datas ilustrativas — ajuste conforme a agenda real da Mel.</p>
+    </div>
   </div>
 </section>
 
 <!-- ============ ORÇAMENTO ============ -->
-<section id="orcamento" class="relative z-10 bg-ink border-t hairline">
-  <div class="mx-auto max-w-3xl px-5 py-24 md:py-32">
+<section id="orcamento" class="relative z-10 bg-kuro border-t rule">
+  <div class="mx-auto max-w-3xl px-6 md:px-5 py-24 md:py-32">
     <div class="text-center mb-12">
-      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Orçamento</p>
-      <h2 class="font-display text-4xl md:text-5xl text-paper">Faça seu orçamento</h2>
-      <p class="text-mute mt-4 max-w-xl mx-auto">Preencha os dados abaixo. Ao enviar, abre o WhatsApp com a mensagem já pronta — é só mandar.</p>
+      <span class="text-ash tracking-[.35em] text-[11px] uppercase">Agendamento</span>
+      <h2 class="font-display text-4xl md:text-6xl text-washi uppercase mt-5 leading-none">Vamos criar<br>sua peça</h2>
+      <p class="text-smoke mt-6 max-w-xl mx-auto">Preencha abaixo. Ao enviar, o WhatsApp abre com a mensagem pronta — é só disparar.</p>
     </div>
 
     <form id="quote" class="space-y-6">
       <div class="grid md:grid-cols-2 gap-6">
         <label class="block">
-          <span class="text-xs tracking-[.1em] uppercase text-fog">Seu nome</span>
-          <input name="nome" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Nome completo" />
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Seu nome</span>
+          <input name="nome" type="text" required class="mt-2 w-full bg-plate border rule px-4 py-3 text-bone placeholder-ash/50 focus:border-bone focus:outline-none transition" placeholder="Nome completo" />
         </label>
         <label class="block">
-          <span class="text-xs tracking-[.1em] uppercase text-fog">Estilo desejado</span>
-          <select name="estilo" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone focus:border-paper focus:outline-none">
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Tipo de trabalho</span>
+          <select name="estilo" required class="mt-2 w-full bg-plate border rule px-4 py-3 text-bone focus:border-bone focus:outline-none transition">
             <option value="">Selecione</option>
-            <option>Realismo</option>
-            <option>Fine Line</option>
-            <option>Fechamento</option>
-            <option>Cover-up</option>
-            <option>Ainda não sei / me ajude a decidir</option>
+            <option>NeoOriental autoral</option>
+            <option>Flash disponível</option>
+            <option>Cobertura / cover-up</option>
+            <option>Guest spot (Europa 2027)</option>
+            <option>Ainda não sei — me ajude a decidir</option>
           </select>
         </label>
         <label class="block">
-          <span class="text-xs tracking-[.1em] uppercase text-fog">Local do corpo</span>
-          <input name="local" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Ex.: antebraço, costas, perna" />
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Local do corpo</span>
+          <input name="local" type="text" required class="mt-2 w-full bg-plate border rule px-4 py-3 text-bone placeholder-ash/50 focus:border-bone focus:outline-none transition" placeholder="Ex.: braço, costas, perna" />
         </label>
         <label class="block">
-          <span class="text-xs tracking-[.1em] uppercase text-fog">Tamanho aproximado</span>
-          <input name="tamanho" type="text" required class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Ex.: 15 cm, palma da mão, fechamento" />
+          <span class="text-[11px] tracking-[.2em] uppercase text-ash">Tamanho aproximado</span>
+          <input name="tamanho" type="text" required class="mt-2 w-full bg-plate border rule px-4 py-3 text-bone placeholder-ash/50 focus:border-bone focus:outline-none transition" placeholder="Ex.: 20 cm, fechamento" />
         </label>
       </div>
 
       <label class="block">
-        <span class="text-xs tracking-[.1em] uppercase text-fog">É cobertura de tatuagem antiga (cover-up)?</span>
-        <select name="cover" class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone focus:border-paper focus:outline-none">
-          <option>Não</option>
-          <option>Sim</option>
-        </select>
+        <span class="text-[11px] tracking-[.2em] uppercase text-ash">Descreva sua ideia / referências</span>
+        <textarea name="ideia" rows="4" class="mt-2 w-full bg-plate border rule px-4 py-3 text-bone placeholder-ash/50 focus:border-bone focus:outline-none transition" placeholder="Conte o que imagina. Imagens de referência você pode mandar depois no WhatsApp."></textarea>
       </label>
 
-      <label class="block">
-        <span class="text-xs tracking-[.1em] uppercase text-fog">Descreva sua ideia / referências</span>
-        <textarea name="ideia" rows="4" class="mt-2 w-full rounded-lg bg-surface border hairline px-4 py-3 text-bone placeholder-fog/60 focus:border-paper focus:outline-none" placeholder="Conte o que você imagina. Se tiver imagens de referência, pode mandá-las no WhatsApp depois."></textarea>
-      </label>
-
-      <button type="submit" class="w-full rounded-full bg-paper px-8 py-4 text-sm tracking-wide uppercase font-medium text-ink hover:bg-bone transition inline-flex items-center justify-center gap-2">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.317l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <button type="submit" class="w-full bg-washi text-sumi px-8 py-4 text-[12px] tracking-[.18em] uppercase font-semibold hover:bg-bone transition inline-flex items-center justify-center gap-2.5">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.317l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         Enviar pelo WhatsApp
       </button>
-      <p class="text-center text-xs text-fog">Sem compromisso. Resposta o mais breve possível.</p>
+      <p class="text-center text-xs text-ash">Sem compromisso · resposta o mais breve possível.</p>
     </form>
   </div>
 </section>
 
-<!-- ============ LOCAL ============ -->
-<section id="local" class="relative z-10 bg-panel border-t hairline">
-  <div class="mx-auto max-w-6xl px-5 pt-24 pb-28 md:py-32 grid md:grid-cols-2 gap-12 items-start">
-    <div>
-      <p class="text-fog tracking-[.3em] text-xs mb-4 uppercase">Estúdio</p>
-      <h2 class="font-display text-4xl md:text-5xl text-paper mb-8">Onde a arte acontece</h2>
-
-      <div class="space-y-6 text-mute">
-        <div>
-          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Endereço</div>
-          <p class="text-bone">Rua Duílio Calderari, 926</p>
-          <p>Curitiba — PR</p>
-        </div>
-        <div>
-          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Atendimento</div>
-          <p>Segunda a sexta · 10h às 18h</p>
-          <p>Sábado · 10h às 13h</p>
-          <p>Domingo · fechado</p>
-        </div>
-        <div>
-          <div class="text-xs tracking-[.1em] uppercase text-fog mb-1">Contato</div>
-          <a href="https://wa.me/5541992702189" class="text-bone hover:text-paper transition block">WhatsApp: (41) 99270-2189</a>
-          <a href="https://instagram.com/fabioantunestattoo" class="text-bone hover:text-paper transition block">@fabioantunestattoo</a>
-        </div>
-      </div>
+<!-- ============ CTA FINAL ============ -->
+<section class="relative z-10 bg-sumi border-t rule">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-24 md:py-28 text-center">
+    <!-- selo hanko -->
+    <div class="inline-flex items-center justify-center w-16 h-16 border-2 border-shu mb-8" aria-hidden="true">
+      <span class="font-display text-shu text-2xl">彫</span>
     </div>
-
-    <div class="rounded-lg overflow-hidden border hairline h-80 md:h-full md:aspect-auto">
-      <iframe
-        title="Mapa do estúdio"
-        class="block w-full h-full grayscale contrast-125"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Rua%20Du%C3%ADlio%20Calderari%2C%20926%20Curitiba%20PR&output=embed">
-      </iframe>
-    </div>
+    <h2 class="font-display text-5xl md:text-8xl text-washi uppercase leading-[.9]">
+      Sua próxima<br>tatuagem
+    </h2>
+    <a href="https://wa.me/5511958415148" target="_blank" rel="noopener"
+       class="mt-10 inline-flex items-center gap-3 bg-washi text-sumi px-10 py-5 text-[13px] tracking-[.18em] uppercase font-semibold hover:bg-bone transition">
+      Falar com a Mel no WhatsApp
+    </a>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="relative z-10 bg-void border-t hairline">
-  <div class="mx-auto max-w-6xl px-5 pt-16 pb-8 grid md:grid-cols-3 gap-10">
+<footer class="relative z-10 bg-kuro border-t rule">
+  <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 pt-16 pb-8 grid md:grid-cols-3 gap-10">
     <div>
-      <div class="font-display font-bold text-lg text-paper">FÁBIO ANTUNES</div>
-      <div class="text-xs tracking-[.3em] text-fog mt-1 uppercase">Tattoo · Desde 2005</div>
-      <p class="text-mute text-sm mt-4 max-w-xs leading-relaxed">Realismo, fine line e fechamentos autorais, com biossegurança e acabamento de alto nível.</p>
+      <div class="font-display text-xl text-washi tracking-wide">MEL SEIDELER</div>
+      <div class="text-[11px] tracking-[.3em] text-ash mt-2 uppercase">NeoOriental Tattoo</div>
+      <p class="text-smoke text-sm mt-4 max-w-xs leading-relaxed">Arte autoral em estética oriental contemporânea. Houju Tattoo — São Paulo.</p>
     </div>
     <div>
-      <div class="text-xs tracking-[.1em] uppercase text-fog mb-4">Navegação</div>
-      <div class="flex flex-col gap-2 text-sm text-mute">
-        <a href="#sobre" class="hover:text-paper transition">Sobre</a>
-        <a href="#trabalhos" class="hover:text-paper transition">Trabalhos</a>
-        <a href="#processo" class="hover:text-paper transition">Como funciona</a>
-        <a href="#orcamento" class="hover:text-paper transition">Orçamento</a>
+      <div class="text-[11px] tracking-[.2em] uppercase text-ash mb-4">Navegar</div>
+      <div class="flex flex-col gap-2 text-sm text-smoke">
+        <a href="#sobre" class="hover:text-washi transition">Sobre</a>
+        <a href="#portfolio" class="hover:text-washi transition">Portfólio</a>
+        <a href="#guests" class="hover:text-washi transition">Guests</a>
+        <a href="#orcamento" class="hover:text-washi transition">Orçamento</a>
       </div>
     </div>
     <div>
-      <div class="text-xs tracking-[.1em] uppercase text-fog mb-4">Estúdio</div>
-      <div class="flex flex-col gap-2 text-sm text-mute">
-        <span>Rua Duílio Calderari, 926 — Curitiba, PR</span>
-        <a href="https://wa.me/5541992702189" class="hover:text-paper transition">WhatsApp</a>
-        <a href="https://instagram.com/fabioantunestattoo" class="hover:text-paper transition">Instagram</a>
+      <div class="text-[11px] tracking-[.2em] uppercase text-ash mb-4">Contato</div>
+      <div class="flex flex-col gap-4 text-sm text-smoke">
+        <span>Houju Tattoo — São Paulo, SP</span>
+        <div class="flex items-center gap-4">
+          <a href="https://wa.me/5511958415148" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="text-ash hover:text-washi transition">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 4.997l-1.428 5.22 5.344-1.402a9.96 9.96 0 0 0 4.736 1.205h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.929-7.07a9.929 9.929 0 0 0-7.072-2.95zm5.876 15.845a8.264 8.264 0 0 1-4.879 1.575h-.003a8.29 8.29 0 0 1-4.226-1.156l-.303-.18-3.171.832.847-3.09-.198-.317a8.264 8.264 0 0 1-1.267-4.415c0-4.583 3.73-8.312 8.317-8.312a8.26 8.26 0 0 1 5.876 2.437 8.26 8.26 0 0 1 2.431 5.881c0 4.583-3.73 8.312-8.316 8.312z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/mseideler/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="text-ash hover:text-washi transition">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="border-t hairline">
-    <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-fog">
-      <p>© <span id="year"></span> Fábio Antunes. Todos os direitos reservados.</p>
-      <a href="https://kadosh-tech.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-paper transition">Desenvolvido por Kadosh Tech</a>
+  <div class="border-t rule">
+    <div class="mx-auto max-w-7xl pl-6 md:pl-16 pr-5 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ash">
+      <p>© <span id="year"></span> Mel Seideler. Todos os direitos reservados.</p>
+      <a href="https://kadosh-tech.vercel.app/" target="_blank" rel="noopener" class="hover:text-washi transition">Desenvolvido por Kadosh Tech</a>
     </div>
   </div>
 </footer>
 
 <!-- ============ LIGHTBOX ============ -->
-<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/95 p-6">
-  <button id="lb-close" class="absolute top-6 right-6 text-bone/70 hover:text-paper" aria-label="Fechar">✕</button>
+<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-kuro/96 p-6">
+  <button id="lb-close" class="absolute top-6 right-6 w-10 h-10 border border-keslt text-bone/80 hover:text-washi hover:border-bone transition" aria-label="Fechar">✕</button>
   <div class="max-w-2xl w-full">
-    <div class="rounded-lg border hairline overflow-hidden bg-panel">
-      <img id="lb-img" src="" alt="" class="w-full h-auto max-h-[75vh] object-contain" />
+    <div class="border rule overflow-hidden bg-ish">
+      <img id="lb-img" src="" alt="" class="w-full h-auto max-h-[76vh] object-contain" />
     </div>
-    <p id="lb-label" class="text-center text-mute mt-4"></p>
+    <p id="lb-title" class="text-center text-washi mt-5 text-[15px] tracking-[.12em] uppercase"></p>
+    <p id="lb-desc" class="text-center text-smoke mt-2 text-[13px] leading-relaxed"></p>
   </div>
 </div>
 
 <script>
-  // ano
+  // ---- ano ----
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // menu hamburguer (mobile)
+  // ---- placeholder fallback (imagem quebrada -> SVG na paleta) ----
+  function phFill(img){
+    const label = (img.getAttribute('data-ph') || 'Arte').toUpperCase();
+    const svg = encodeURIComponent(
+      `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>
+        <rect width='100%' height='100%' fill='#161616'/>
+        <path d='M600 260 C560 150 440 100 330 120 C170 148 70 290 96 450 C122 610 270 720 430 694 C560 672 650 578 668 470'
+          fill='none' stroke='#2A2A2A' stroke-width='26' stroke-linecap='round'/>
+        <text x='50%' y='52%' fill='#3C3C3C' font-family='Arial' font-size='34' letter-spacing='8'
+          text-anchor='middle'>${label}</text>
+        <text x='50%' y='58%' fill='#B7332B' font-family='Arial' font-size='18' letter-spacing='6'
+          text-anchor='middle'>SUBSTITUIR</text>
+      </svg>`
+    );
+    img.onerror = null;
+    img.src = 'data:image/svg+xml;charset=utf-8,' + svg;
+    img.style.filter = 'none';
+  }
+
+  // ---- galeria: dados ----
+  const ART = [
+    { s:'neooriental', c:'NeoOriental',      t:'Tigre Oriental & Nuvens (Tora)',        d:'Fechamento de braço em Blackwork com sombreamento suave.',        u:'img/foto (1).png' },
+    { s:'neooriental', c:'NeoOriental',      t:'Dragão e Nuvens (Ryu)',                 d:'Composição fluída acompanhando o movimento do ombro.',            u:'img/foto (2).png' },
+    { s:'neooriental', c:'NeoOriental',      t:'Tigre Autoral (Tora)',                  d:'Estudo de movimento e hachuras em Blackwork no antebraço.',       u:'img/foto (3).png' },
+    { s:'flash',       c:'Flash Disponível', t:'Tigre Autoral (Tora)',                  d:'Projeto autoral adaptado à anatomia da costela e abdômen.',       u:'img/foto (4).png' },
+    { s:'healed',      c:'Cicatrizada',      t:'Tigres Duplos & Nó Místico',            d:'Fechamento de costas autoral com simetria oriental.',             u:'img/foto (5).png' },
+    { s:'neooriental', c:'NeoOriental',      t:'Dragão Oriental (Ryu)',                 d:'Linhas dinâmicas e contraste em preto no antebraço.',             u:'img/foto (6).png' },
+    { s:'neooriental', c:'NeoOriental',      t:'Dragão Sinuoso (Ryu)',                  d:'Peça centralizada nas costas com foco em movimento e textura.',   u:'img/foto (7).png' },
+    { s:'neooriental', c:'NeoOriental',      t:'Águia Oriental & Flores de Cerejeira',  d:'Composição lateral em Blackwork e Sumi-e.',                       u:'img/foto (8).png' },
+  ];
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = ART.map(a => `
+    <button class="grid-item group" data-style="${a.s}" data-cat="${a.c}" data-title="${a.t}" data-desc="${a.d}" data-img="${a.u}">
+      <span class="frame block">
+        <img src="${a.u}" alt="${a.t}" loading="lazy" data-ph="${a.s}" onerror="phFill(this)" />
+        <span class="inl"></span><span class="tick"></span>
+        <span class="cap">${a.t}</span>
+      </span>
+    </button>`).join('');
+
+  // ---- menu mobile ----
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
   const setMenu = (open) => {
     mobileMenu.classList.toggle('open', open);
     menuToggle.setAttribute('aria-expanded', String(open));
-    menuIconOpen.classList.toggle('hidden', open);
-    menuIconClose.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
   };
   menuToggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
 
-  // scroll suave próprio (não depende do scroll-behavior nativo do navegador)
-  const HEADER_OFFSET = 80;
-  const SCROLL_DURATION = 600;
-  const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-  function smoothScrollTo(target) {
+  // ---- scroll suave ----
+  const HEADER_OFFSET = 80, DURATION = 650;
+  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+  function smoothScrollTo(target){
     const startY = window.scrollY;
     const destY = target.getBoundingClientRect().top + startY - HEADER_OFFSET;
-    const distance = destY - startY;
-    const startTime = performance.now();
-
-    function step(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / SCROLL_DURATION, 1);
-      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    const dist = destY - startY, t0 = performance.now();
+    (function step(now){
+      const p = Math.min((now-t0)/DURATION, 1);
+      window.scrollTo(0, startY + dist*ease(p));
+      if (p < 1) requestAnimationFrame(step);
+    })(performance.now());
   }
-
-  // aplica a todos os links de âncora internos da página (header, menu mobile, hero, footer)
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     const hash = link.getAttribute('href');
     if (hash === '#') return;
     const target = document.getElementById(hash.slice(1));
     if (!target) return;
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      setMenu(false);
-      smoothScrollTo(target);
-    });
+    link.addEventListener('click', e => { e.preventDefault(); setMenu(false); smoothScrollTo(target); });
   });
 
-  // nav solid ao rolar
+  // ---- nav sólido ao rolar ----
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('bg-ink/90', window.scrollY > 40) || nav.classList.toggle('backdrop-blur', window.scrollY > 40) || nav.classList.toggle('border-b', window.scrollY > 40) || nav.classList.toggle('hairline', window.scrollY > 40);
+  const onScroll = () => {
+    const on = window.scrollY > 40;
+    nav.classList.toggle('bg-kuro/90', on);
+    nav.classList.toggle('backdrop-blur', on);
+    nav.classList.toggle('border-b', on);
+    nav.classList.toggle('rule', on);
+  };
   window.addEventListener('scroll', onScroll); onScroll();
 
-  // reveal
+  // ---- reveal ----
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: .15 });
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.15 });
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
-  // filtro portfólio
-  const btns = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.grid-item');
-  btns.forEach(b => b.addEventListener('click', () => {
-    btns.forEach(x => x.setAttribute('aria-pressed', 'false'));
-    b.setAttribute('aria-pressed', 'true');
-    const f = b.dataset.filter;
-    items.forEach(it => {
-      const show = f === 'all' || it.dataset.style === f;
-      it.style.display = show ? '' : 'none';
-    });
-  }));
 
-  // lightbox
+  // ---- lightbox ----
   const lb = document.getElementById('lightbox');
-  const lbLabel = document.getElementById('lb-label');
+  const lbTitle = document.getElementById('lb-title');
+  const lbDesc = document.getElementById('lb-desc');
   const lbImg = document.getElementById('lb-img');
   items.forEach(it => it.addEventListener('click', () => {
-    lbLabel.textContent = it.dataset.label || '';
+    lbTitle.textContent = it.dataset.title || '';
+    lbDesc.textContent = it.dataset.desc || '';
     lbImg.src = it.dataset.img || '';
-    lbImg.alt = it.dataset.label || '';
+    lbImg.alt = it.dataset.title || '';
     lb.classList.remove('hidden'); lb.classList.add('flex');
   }));
   const closeLb = () => { lb.classList.add('hidden'); lb.classList.remove('flex'); };
@@ -494,21 +612,19 @@
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-  // form -> WhatsApp
-  const WHATS = '5541992702189';
+  // ---- form -> WhatsApp ----
+  const WHATS = '5511958415148';
   document.getElementById('quote').addEventListener('submit', e => {
     e.preventDefault();
-    const f = e.target;
-    const g = n => (f.elements[n]?.value || '').trim();
+    const f = e.target, g = n => (f.elements[n]?.value || '').trim();
     const msg =
-      `Olá, Fábio! Quero fazer um orçamento.%0A%0A` +
-      `*Nome:* ${g('nome')}%0A` +
-      `*Estilo:* ${g('estilo')}%0A` +
-      `*Local do corpo:* ${g('local')}%0A` +
-      `*Tamanho:* ${g('tamanho')}%0A` +
-      `*Cover-up:* ${g('cover')}%0A` +
-      (g('ideia') ? `*Ideia:* ${g('ideia')}%0A` : '');
-    window.open(`https://wa.me/${WHATS}?text=${msg}`, '_blank');
+      `Olá, Mel! Quero fazer um orçamento.\n\n` +
+      `*Nome:* ${g('nome')}\n` +
+      `*Trabalho:* ${g('estilo')}\n` +
+      `*Local do corpo:* ${g('local')}\n` +
+      `*Tamanho:* ${g('tamanho')}` +
+      (g('ideia') ? `\n*Ideia:* ${g('ideia')}` : '');
+    window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`, '_blank');
   });
 </script>
 </body>
